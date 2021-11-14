@@ -6,7 +6,7 @@
 </div>
  <div class="col-md-6 text-right">
   <b>Note:</b>
-  <a href="https://play.google.com/store/apps/details?id=de.cyberdream.androidtv.notifications.google&" target="_blank">Notifications for AndroidTV</a> app required to be running on AndroidTV
+  <a href="https://github.com/Aleks130699/PiPup" target="_blank">PIPup Notifications</a> app required to be running on AndroidTV
  </div>
 </div>
 &nbsp;
@@ -31,7 +31,16 @@
 <!-- search results (list) -->
 <form action="?" method="post" name="frmList_pipup_devices" style="padding:0px" class="form">
 <table  align=center class="table table-striped">
-	<tbody>
+<thead>
+<tr>
+ <th><#LANG_TITLE#></th>
+ <th>ID</th>
+ <th>IP</th>
+ <th><#LANG_MIN_MSG_LEVEL#></th>
+ <th>&nbsp;</th>
+</tr>
+</thead>
+<tbody>
 [#begin RESULT#]
 <tr>
  <td
@@ -39,6 +48,14 @@
   <b>
    [#TITLE#]
   </a></b>
+ </td>
+  <td
+   >
+  [#if ID!=""#]
+   [#ID#]
+  [#else#]
+   &nbsp;
+  [#endif#]
  </td>
  <td
    >
