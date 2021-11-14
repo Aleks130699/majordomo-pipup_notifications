@@ -34,7 +34,7 @@ if ($this->mode == 'update') {
 		$rec['MSG_COLOR']=gr('msg_color');
         $rec['MSG_SIZE']=gr('msg_size','int');
         $rec['MSG_BKGCOLOR']=gr('msg_bkgcolor');
-        $rec['MSG_TRANSPARENCY']=gr('msg_transparency','int');
+        $rec['MSG_TRANSPARENCY']=gr('msg_transparency');
         
     }
 

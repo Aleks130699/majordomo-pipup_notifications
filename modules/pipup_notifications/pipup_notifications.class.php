@@ -198,15 +198,18 @@ class pipup_notifications extends module
 		if ($rec['MSG_TITLESIZE']) $payload['titleSize']=processTitle($rec['MSG_TITLESIZE']);
 		if ($rec['MSG_COLOR']) $payload['messageColor']=processTitle($rec['MSG_COLOR']);
 		if ($rec['MSG_SIZE']) $payload['messageSize']=processTitle($rec['MSG_SIZE']);
-        if ($rec['MSG_BKGCOLOR']) $payload['backgroundColor']=(string)$rec['MSG_BKGCOLOR'];
+        if ($rec['MSG_BKGCOLOR']) $payload['backgroundColor']=processTitle($rec['MSG_BKGCOLOR']);
+		if ($rec['MSG_TRANSPARENCY']) $payload['backgroundColor'] = ('#'.processTitle($rec['MSG_TRANSPARENCY']).substr($payload['backgroundColor'], 1));
 
         $url = 'http://' . $ip . ':7979/notify';
+		
+		$payload = json_encode($payload);
 
         foreach($payload as $k=>$v) {
             $url.='&'.$k.'='.urlencode($v);
         }
         $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $result = curl_exec($ch);
@@ -286,13 +289,13 @@ class pipup_notifications extends module
  pipup_devices: IP varchar(255) NOT NULL DEFAULT ''
  pipup_devices: MIN_MSG_LEVEL varchar(255) NOT NULL DEFAULT ''
  pipup_devices: MSG_TITLE varchar(255) NOT NULL DEFAULT ''
- pipup_devices: MSG_TITLECOLOR varchar(20) NOT NULL DEFAULT '#607d8b'
+ pipup_devices: MSG_TITLECOLOR varchar(20) NOT NULL DEFAULT '#ffffff'
  pipup_devices: MSG_TITLESIZE int(3) NOT NULL DEFAULT '20'
- pipup_devices: MSG_COLOR varchar(20) NOT NULL DEFAULT '#607d8b'
+ pipup_devices: MSG_COLOR varchar(20) NOT NULL DEFAULT '#ffffff'
  pipup_devices: MSG_SIZE int(3) NOT NULL DEFAULT '20'
  pipup_devices: MSG_DURATION int(3) NOT NULL DEFAULT '5'
  pipup_devices: MSG_BKGCOLOR varchar(20) NOT NULL DEFAULT '#607d8b'
- pipup_devices: MSG_TRANSPARENCY int(3) NOT NULL DEFAULT '3'
+ pipup_devices: MSG_TRANSPARENCY varchar(20) NOT NULL DEFAULT ''
  pipup_devices: MSG_POSITION int(3) NOT NULL DEFAULT '0'
  
 EOD;
