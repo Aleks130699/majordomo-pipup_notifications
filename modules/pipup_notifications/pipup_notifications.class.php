@@ -20,7 +20,7 @@ class pipup_notifications extends module
     function __construct()
     {
         $this->name = "pipup_notifications";
-        $this->title = "pipup Notifications";
+        $this->title = "PIPup Notifications";
         $this->module_category = "<#LANG_SECTION_DEVICES#>";
         $this->checkInstalled();
     }
