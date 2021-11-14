@@ -216,6 +216,56 @@ class pipup_notifications extends module
         curl_close($ch);
     }
 
+    function api_send_media($id, $message, $type, $urlweb)
+    {
+
+        $rec=SQLSelectOne("SELECT * FROM pipup_devices WHERE ID=".(int)$id);
+        $ip = $rec['IP'];
+
+        if (!$ip) return;
+		
+		$media = array(
+			$type => array("uri" => $urlweb,"width" => "520")
+		);
+		
+        $payload = array(
+            "duration" => "5",
+			"position" => "0",
+			"title" => "MajorDoMo",
+			"titleColor" => "#0066cc",
+			"titleSize" => "20",
+            "message" => $message,
+			"messageColor" => "#000000",
+			"messageSize" => "14",
+            "backgroundColor" => "#ffffff",
+			"media" => $media,
+        );
+
+        if ($rec['MSG_DURATION']) $payload['duration']=(string)$rec['MSG_DURATION'];
+		if ($rec['MSG_POSITION']) $payload['position']=(string)$rec['MSG_POSITION'];
+		if ($rec['MSG_TITLE']) $payload['title']=processTitle($rec['MSG_TITLE']);
+		if ($rec['MSG_TITLECOLOR']) $payload['titleColor']=processTitle($rec['MSG_TITLECOLOR']);
+		if ($rec['MSG_TITLESIZE']) $payload['titleSize']=processTitle($rec['MSG_TITLESIZE']);
+		if ($rec['MSG_COLOR']) $payload['messageColor']=processTitle($rec['MSG_COLOR']);
+		if ($rec['MSG_SIZE']) $payload['messageSize']=processTitle($rec['MSG_SIZE']);
+        if ($rec['MSG_BKGCOLOR']) $payload['backgroundColor']=processTitle($rec['MSG_BKGCOLOR']);
+		if ($rec['MSG_TRANSPARENCY']) $payload['backgroundColor'] = ('#'.processTitle($rec['MSG_TRANSPARENCY']).substr($payload['backgroundColor'], 1));
+
+        $url = 'http://' . $ip . ':7979/notify';
+		
+		$payload = json_encode($payload);
+
+        foreach($payload as $k=>$v) {
+            $url.='&'.$k.'='.urlencode($v);
+        }
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $result = curl_exec($ch);
+        curl_close($ch);
+    }
+
     /**
      * pipup_devices delete record
      *
