@@ -1,0 +1,192 @@
+<p><a href="?"><#LANG_BACK#></a></p>
+<!-- Table 'pipup_devices' edit -->
+<form action="?" method="post" enctype="multipart/form-data" name="frmEdit" class="form-horizontal">
+[#if OK#]
+<div class="alert alert-success"><#LANG_DATA_SAVED#></div>
+[#endif OK#]
+[#if ERR#]
+<div class="alert alert-danger"><#LANG_FILLOUT_REQURED#></div>
+[#endif ERR#]
+<fieldset>
+[#if ID=""#]
+<legend><#LANG_NEW_RECORD#></legend>
+[#endif ID#]
+<!-- TITLE (varchar) -->
+<div class="form-group[#if ERR_TITLE#] has-error[#endif#]">
+ <label for="title" class="col-lg-3 control-label">
+ <#LANG_TITLE#>:
+ (*)
+ </label>
+ <div class="col-lg-9"><input id="title" name="title" value="[#TITLE#]" type="text" class="form-control"></div>
+</div>
+<!-- IP (varchar) -->
+<div class="form-group[#if ERR_IP#] has-error[#endif#]">
+ <label for="ip" class="col-lg-3 control-label">
+ IP:
+ </label>
+ <div class="col-lg-9"><input id="ip" name="ip" value="[#IP#]" type="text" class="form-control"></div>
+</div>
+<!-- MIN_MSG_LEVEL (varchar) -->
+<div class="form-group[#if ERR_MIN_MSG_LEVEL#] has-error[#endif#]">
+ <label for="min_msg_level" class="col-lg-3 control-label">
+  <#LANG_MIN_MSG_LEVEL#>:
+ </label>
+ <div class="col-lg-9"><input id="min_msg_level" name="min_msg_level" value="[#MIN_MSG_LEVEL#]" type="text" class="form-control">
+  <span class="help-block"><#LANG_EXAMPLE#>: <i>%ThisComputer.minMsgLevel%</i></span>
+ </div>
+</div>
+
+[#if ID!=""#]
+ <div class="form-group">
+  <label for="msg_duration" class="col-lg-3 control-label">
+   Duration, seconds:
+  </label>
+  <div class="col-lg-9"><input id="msg_duration" name="msg_duration" value="[#MSG_DURATION#]" type="text" class="form-control"></div>
+ </div>
+ <div class="form-group">
+  <label for="msg_position" class="col-lg-3 control-label">
+   <#LANG_POSITION_TYPE#>:
+  </label>
+  <div class="col-lg-9">
+   <select name="msg_position" id="msg_position" class="form-control">
+    <option value="0"[#if MSG_POSITION="0"#] selected[#endif#]>Top-Right</option>
+    <option value="1"[#if MSG_POSITION="1"#] selected[#endif#]>Top-Left</option>
+    <option value="2"[#if MSG_POSITION="2"#] selected[#endif#]>Bottom-Right</option>
+    <option value="3"[#if MSG_POSITION="3"#] selected[#endif#]>Bottom-Left</option>
+    <option value="4"[#if MSG_POSITION="4"#] selected[#endif#]>Center</option>
+   </select>
+  </div>
+ </div>
+ <div class="form-group">
+  <label for="msg_title" class="col-lg-3 control-label">
+   Message title:
+  </label>
+  <div class="col-lg-9"><input id="msg_title" name="msg_title" value="[#MSG_TITLE#]" type="text" class="form-control"></div>
+ </div>
+ <div class="form-group">
+  <label for="msg_titlecolor" class="col-lg-3 control-label">
+   <#LANG_COLOR#>:
+  </label>
+  <div class="col-lg-9">
+   <select name="msg_titlecolor" id="msg_titlecolor" class="form-control">
+    <option value="#607d8b"[#if MSG_TITLECOLOR="#607d8b"#] selected[#endif#] style="background-color:#607d8b">Grey</option>
+    <option value="#000000"[#if MSG_TITLECOLOR="#000000"#] selected[#endif#] style="background-color:#000000">Black</option>
+    <option value="#303F9F"[#if MSG_TITLECOLOR="#303F9F"#] selected[#endif#] style="background-color:#303F9F">Indigo</option>
+    <option value="#4CAF50"[#if MSG_TITLECOLOR="#4CAF50"#] selected[#endif#] style="background-color:#4CAF50">Green</option>
+    <option value="#F44336"[#if MSG_TITLECOLOR="#F44336"#] selected[#endif#] style="background-color:#F44336">Red</option>
+    <option value="#00BCD4"[#if MSG_TITLECOLOR="#00BCD4"#] selected[#endif#] style="background-color:#00BCD4">Cyan</option>
+    <option value="#009688"[#if MSG_TITLECOLOR="#009688"#] selected[#endif#] style="background-color:#009688">Teal</option>
+    <option value="#FFC107"[#if MSG_TITLECOLOR="#FFC107"#] selected[#endif#] style="background-color:#FFC107">Amber</option>
+    <option value="#E91E63"[#if MSG_TITLECOLOR="#E91E63"#] selected[#endif#] style="background-color:#E91E63">Pink</option>
+   </select>
+  </div>
+ </div>
+ <div class="form-group">
+  <label for="msg_titlesize" class="col-lg-3 control-label">
+   Title size:
+  </label>
+  <div class="col-lg-9"><input id="msg_titlesize" name="msg_titlesize" value="[#MSG_TITLESIZE#]" type="text" class="form-control"></div>
+ </div>
+ <div class="form-group">
+  <label for="msg_color" class="col-lg-3 control-label">
+   Massage color:
+  </label>
+  <div class="col-lg-9">
+   <select name="msg_color" id="msg_color" class="form-control">
+    <option value="#607d8b"[#if MSG_COLOR="#607d8b"#] selected[#endif#] style="background-color:#607d8b">Grey</option>
+    <option value="#000000"[#if MSG_COLOR="#000000"#] selected[#endif#] style="background-color:#000000">Black</option>
+    <option value="#303F9F"[#if MSG_COLOR="#303F9F"#] selected[#endif#] style="background-color:#303F9F">Indigo</option>
+    <option value="#4CAF50"[#if MSG_COLOR="#4CAF50"#] selected[#endif#] style="background-color:#4CAF50">Green</option>
+    <option value="#F44336"[#if MSG_COLOR="#F44336"#] selected[#endif#] style="background-color:#F44336">Red</option>
+    <option value="#00BCD4"[#if MSG_COLOR="#00BCD4"#] selected[#endif#] style="background-color:#00BCD4">Cyan</option>
+    <option value="#009688"[#if MSG_COLOR="#009688"#] selected[#endif#] style="background-color:#009688">Teal</option>
+    <option value="#FFC107"[#if MSG_COLOR="#FFC107"#] selected[#endif#] style="background-color:#FFC107">Amber</option>
+    <option value="#E91E63"[#if MSG_COLOR="#E91E63"#] selected[#endif#] style="background-color:#E91E63">Pink</option>
+   </select>
+  </div>
+ </div>
+ <div class="form-group">
+  <label for="msg_size" class="col-lg-3 control-label">
+   Message size:
+  </label>
+  <div class="col-lg-9"><input id="msg_size" name="msg_size" value="[#MSG_SIZE#]" type="text" class="form-control"></div>
+ </div> 
+ <div class="form-group">
+  <label for="msg_bkgcolor" class="col-lg-3 control-label">
+   Background Color:
+  </label>
+  <div class="col-lg-9">
+   <select name="msg_bkgcolor" id="msg_bkgcolor" class="form-control">
+    <option value="#607d8b"[#if MSG_BKGCOLOR="#607d8b"#] selected[#endif#] style="background-color:#607d8b">Grey</option>
+    <option value="#000000"[#if MSG_BKGCOLOR="#000000"#] selected[#endif#] style="background-color:#000000">Black</option>
+    <option value="#303F9F"[#if MSG_BKGCOLOR="#303F9F"#] selected[#endif#] style="background-color:#303F9F">Indigo</option>
+    <option value="#4CAF50"[#if MSG_BKGCOLOR="#4CAF50"#] selected[#endif#] style="background-color:#4CAF50">Green</option>
+    <option value="#F44336"[#if MSG_BKGCOLOR="#F44336"#] selected[#endif#] style="background-color:#F44336">Red</option>
+    <option value="#00BCD4"[#if MSG_BKGCOLOR="#00BCD4"#] selected[#endif#] style="background-color:#00BCD4">Cyan</option>
+    <option value="#009688"[#if MSG_BKGCOLOR="#009688"#] selected[#endif#] style="background-color:#009688">Teal</option>
+    <option value="#FFC107"[#if MSG_BKGCOLOR="#FFC107"#] selected[#endif#] style="background-color:#FFC107">Amber</option>
+    <option value="#E91E63"[#if MSG_BKGCOLOR="#E91E63"#] selected[#endif#] style="background-color:#E91E63">Pink</option>
+   </select>
+  </div>
+ </div>
+
+ <div class="form-group">
+  <label for="msg_transparency" class="col-lg-3 control-label">
+   Transparency:
+  </label>
+  <div class="col-lg-9">
+   <select name="msg_transparency" id="msg_transparency" class="form-control">
+    <option value="0"[#if MSG_TRANSPARENCY="0"#] selected[#endif#]>Default</option>
+    <option value="1"[#if MSG_TRANSPARENCY="1"#] selected[#endif#]>0</option>
+    <option value="2"[#if MSG_TRANSPARENCY="2"#] selected[#endif#]>25&percnt;</option>
+    <option value="3"[#if MSG_TRANSPARENCY="3"#] selected[#endif#]>50&percnt;</option>
+    <option value="4"[#if MSG_TRANSPARENCY="4"#] selected[#endif#]>75&percnt;</option>
+    <option value="5"[#if MSG_TRANSPARENCY="5"#] selected[#endif#]>100&percnt;</option>
+   </select>
+
+  </div>
+ </div>
+
+ [#endif ID#]
+
+<div class="form-group">
+ <div class="col-lg-offset-3 col-lg-9">
+ [#if ID!=""#]
+ <button type="submit" name="subm" value="Submit" class="btn btn-primary"><#LANG_SUBMIT#></button>
+ [#else ID#]
+ <button type="submit" name="subm" value="Add" class="btn btn-primary"><#LANG_ADD#></button>
+ [#endif ID#]
+ <a href="?" class="btn btn-default "><#LANG_CANCEL#></a>
+<input type="hidden" name="id" value="<#ID#>">
+<input type="hidden" name="view_mode" value="<#VIEW_MODE#>">
+<input type="hidden" name="edit_mode" value="<#EDIT_MODE#>">
+<input type="hidden" name="mode" value="update">
+        </div>
+</div>
+</fieldset>
+</form>
+
+<!--#
+[#if ID!=""#]
+<hr>
+<form action="?" method="post" enctype="multipart/form-data" name="frmTest" class="form-horizontal">
+ <fieldset>
+  <div class="form-group">
+   <label for="msg" class="col-lg-3 control-label">
+    Test message:
+   </label>
+   <div class="col-lg-9"><input id="msg" name="msg" value="[#MSG#]" type="text" class="form-control"></div>
+  </div>
+  <div class="form-group">
+   <div class="col-lg-offset-3 col-lg-9">
+    <button type="submit" name="subm" value="Submit" class="btn btn-primary"><#LANG_SEND#></button>
+    <input type="hidden" name="id" value="<#ID#>">
+    <input type="hidden" name="view_mode" value="<#VIEW_MODE#>">
+    <input type="hidden" name="edit_mode" value="<#EDIT_MODE#>">
+    <input type="hidden" name="mode" value="send_test">
+   </div>
+  </div>
+ </fieldset>
+</form>
+[#endif ID#]
+#-->

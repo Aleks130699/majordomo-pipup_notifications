@@ -1,0 +1,17 @@
+
+ <!-- action usual -->
+ <!-- table pipup_devices search -->
+ [#if VIEW_MODE="search_pipup_devices" || VIEW_MODE=""#]
+  [#inc pipup_devices_search_admin.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table pipup_devices search -->
+ <!-- table pipup_devices edit -->
+ [#if VIEW_MODE="edit_pipup_devices"#]
+   [#inc pipup_devices_edit.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table pipup_devices edit -->
+ <!-- table pipup_devices view --> 
+ [#if VIEW_MODE="view_pipup_devices"#]
+   [#inc pipup_devices_view.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table pipup_devices view -->
